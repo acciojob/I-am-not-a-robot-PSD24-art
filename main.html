@@ -1,17 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>I'm not a robot</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <main>
+    <main
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      "
+    >
       <!-- solution start -->
-      
+      <h3 id="h">
+        Please click on the identical tiles to verify that you are not a robot.
+      </h3>
+      <div class="center">
+        <div class="innerDiv" id="innerDiv1"></div>
+        <div class="innerDiv" id="innerDiv2"></div>
+      </div>
       <!-- solution end -->
+      <div style="padding: 2px; margin-top: 10px; display: flex">
+        <button id="reset" onclick="reloadImages()">Reset</button>
+        <button id="verify">Verify</button>
+      </div>
     </main>
     <script src="./script.js"></script>
   </body>
