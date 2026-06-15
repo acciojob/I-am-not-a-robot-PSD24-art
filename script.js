@@ -1,31 +1,48 @@
-//your code here
 let reset = document.getElementById("reset");
 let verify = document.getElementById("verify");
 let h = document.getElementById("h");
 let innerDiv1 = document.getElementById("innerDiv1");
 let innerDiv2 = document.getElementById("innerDiv2");
+
 let arr = [
-  "https://picsum.photos/id/237/200/300",
-  "https://picsum.photos/seed/picsum/200/300",
-  "https://picsum.photos/seed/picsum/200/300",
-  "https://picsum.photos/200/300?grayscale",
-  "https://picsum.photos/200/300/",
-  "https://picsum.photos/200/300.jpg",
+  "https://picsum.photos",
+  "https://picsum.photos",
+  "https://picsum.photos", // Duplicate for human verification
+  "https://picsum.photos",
+  "https://picsum.photos",
+  "https://picsum.photos",
 ];
+
+// Map the index of the 'arr' array to its matching CSS class name
+const classMap = {
+  0: "img1",
+  1: "img2",
+  2: "img2", // Second identical image maps to img2 as well
+  3: "img3",
+  4: "img4",
+  5: "img5"
+};
+
 let imageIdxArr = [];
+let clickedImage = [];
+let clickedImgCount = 0;
 
 window.onload = () => {
   addImages();
 };
 
-let clickedImage = [];
-let clickedImgCount = 0;
-//Create images
+// Create images
 function createImage(i) {
   let image = document.createElement("img");
-  image.src = arr[imageIdxArr[i]];
+  let originalIdx = imageIdxArr[i];
 
-  //click listener
+  // Set the image source
+  image.src = arr[originalIdx];
+
+  // Add the class name so Cypress can find it (e.g., .img1, .img2)
+  image.classList.add(classMap[originalIdx]);
+
+  // Click listener
   image.addEventListener("click", () => {
     if (clickedImage.length < 3) {
       clickedImage.push(image.src);
@@ -69,13 +86,14 @@ function addImages() {
   imageIdxArr = [];
 }
 
-// debugger;
 function reloadImages() {
   innerDiv1.querySelectorAll("img").forEach((childDiv) => childDiv.remove());
   innerDiv2.querySelectorAll("img").forEach((childDiv) => childDiv.remove());
   addImages();
   clickedImage = [];
   clickedImgCount = 0;
+  reset.style.display = "none";
+  verify.style.display = "none";
 }
 
 verify.addEventListener("click", () => {
