@@ -81,17 +81,12 @@ function reloadImages() {
 verify.addEventListener("click", () => {
   console.log("Verify clicked");
   if (clickedImage[0] === clickedImage[1]) {
-    h.innerText = "You are a human. Congratulations!";
+    alert("You are a human. Congratulations!");
   } else {
-    h.innerText =
-      "We can't verify you as a human. You selected the non-identical tiles.";
+    alert("We can't verify you as a human. You selected the non-identical tiles.");
   }
 
   clickedImage = [];
   clickedImgCount = 0;
   reloadImages();
-  setTimeout(() => {
-    h.innerText =
-      "Please click on the identical tiles to verify that you are not a robot.";
-  }, 3000);
 });
